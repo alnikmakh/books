@@ -4,7 +4,6 @@ import {useRouter} from "next/router";
 
 export const Layout = ({children}) => {
     const router = useRouter();
-    console.log(router.pathname)
     return (
         <>
             <Toolbar>

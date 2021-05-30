@@ -1,7 +1,8 @@
 import {Button, Card, CardContent, CardMedia, Grid, Typography} from "@material-ui/core";
 import Image from 'next/image'
 import {makeStyles} from "@material-ui/styles";
-import {DoubleSlider} from "../components/double-slider";
+import {DoubleSlider} from "../../components/double-slider";
+import fire from "../../firebase-config";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -16,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Book = () => {
+const Book = ({book}) => {
     const classes = useStyles();
 
     return (
@@ -25,13 +26,13 @@ const Book = () => {
                 <Grid item xs={4} >
                     <Card>
                         <CardContent>
-                            Book Name
+                            {book.name}
                         </CardContent>
                         <div className={classes.imageWrapper}>
                             <Image src={"/test-book.jpeg"} sizes={"100%"} layout={"fill"} objectFit={"contain"}/>
                         </div>
                         <CardContent>
-                            Author: Benjamin Button
+                            {book.author}
                         </CardContent>
                     </Card>
                 </Grid>
@@ -39,31 +40,37 @@ const Book = () => {
                     <form noValidate autoComplete={"off"}>
                         <Grid container>
                             <Grid item xs={12} className={classes.paddingBottom}>
-                                <DoubleSlider titleFirst={"You pay"}
-                                              titleSecond={"Author earn"}
-                                              max={100}
-                                              min={30}
+                                <DoubleSlider titleFirst={"You pay"} titleSecond={"Author earn"}
+                                              max={100} min={30}
                                               percentage={10}
                                 />
                             </Grid>
                             <Grid item xs={12}>
                                 <Button
-                                    variant="contained"
-                                    size="large"
-                                    color="primary"
-                                    type={"submit"}
+                                    variant="contained" size="large"
+                                    color="primary" type={"submit"}
                                 >
                                     SUBSCRIBE
                                 </Button>
                             </Grid>
                         </Grid>
-
-
                     </form>
                 </Grid>
             </Grid>
         </>
     );
+}
+
+export async function getServerSideProps({query}) {
+    const book = await fire.firestore()
+        .collection("book")
+        .doc(query.id)
+        .get();
+    return {
+        props: {
+            book: book.data()
+        }, // will be passed to the page component as props
+    }
 }
 
 export default Book;

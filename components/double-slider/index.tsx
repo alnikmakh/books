@@ -57,23 +57,17 @@ export const DoubleSlider = ({percentage, titleFirst, titleSecond, max, min}: Do
             <Typography>
                 {titleFirst}
             </Typography>
-            <Slider value={value}
-                    onChange={handleChangeFirst}
-                    valueLabelDisplay={"on"}
-                    step={1}
+            <Slider value={value} onChange={handleChangeFirst}
+                    valueLabelDisplay={"on"} step={1}
                     max={value < max ? max : value}/>
             <Typography>
                 {titleSecond}
             </Typography>
-            <Slider value={value - (calculateValue(value) - value)}
-                    onChange={handleChangeSecond}
-                    valueLabelDisplay={"on"}
-                    step={1}
+            <Slider value={value - (calculateValue(value) - value)} onChange={handleChangeSecond}
+                    valueLabelDisplay={"on"} step={1}
                     max={max}/>
-            <TextField label={"You pay"}
-                       defaultValue={value}
-                       inputRef={inputEl}
-                       onBlur={handleBlurInput}
+            <TextField label={"You pay"} defaultValue={value}
+                       inputRef={inputEl} onBlur={handleBlurInput}
                        onChange={handleChangeInput}/>
         </>
     );
