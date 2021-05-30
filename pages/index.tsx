@@ -26,6 +26,7 @@ export default function Home() {
                 <BookPreview/>
             </Grid>
         </Grid>
+        <Link href={"/book"}>To book</Link>
     </>
   )
 }

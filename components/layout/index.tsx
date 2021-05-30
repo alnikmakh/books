@@ -4,6 +4,7 @@ import {useRouter} from "next/router";
 
 export const Layout = ({children}) => {
     const router = useRouter();
+    console.log(router.pathname)
     return (
         <>
             <Toolbar>
@@ -11,9 +12,8 @@ export const Layout = ({children}) => {
                     variant="h5"
                     color="inherit"
                     align="center"
-                    noWrap
                 >
-                    {router.pathname === "/" ? "Books" : <Link href={"/"}>Books</Link>}
+                    {router.pathname === "/" ? "Books" : <Link href={"/"}><a>Books</a></Link>}
                 </Typography>
             </Toolbar>
             {children}
