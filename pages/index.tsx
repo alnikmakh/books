@@ -20,12 +20,11 @@ export default function Home({books}) {
             {books.map((book) => {
                 return (
                     <Grid item xs={3} key={book.id}>
-                        <BookPreview name={book.name} author={book.author} id={book.id}/>
+                        <BookPreview name={book.name} author={book.author} id={book.id} coverSrc={book.cover}/>
                     </Grid>
                 );
             })}
         </Grid>
-        <Link href={"/book"}>To book</Link>
     </>
   )
 }

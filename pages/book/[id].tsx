@@ -29,7 +29,7 @@ const Book = ({book}) => {
                             {book.name}
                         </CardContent>
                         <div className={classes.imageWrapper}>
-                            <Image src={"/test-book.jpeg"} sizes={"100%"} layout={"fill"} objectFit={"contain"}/>
+                            <Image src={book.cover} sizes={"100%"} layout={"fill"} objectFit={"contain"}/>
                         </div>
                         <CardContent>
                             {book.author}

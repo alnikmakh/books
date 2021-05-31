@@ -17,16 +17,18 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const BookPreview = ({name, author, id}) => {
+export const BookPreview = ({name, author, id, coverSrc}) => {
     const classes = useStyles();
     return (
         <Card>
             <CardContent>
                 {name}
             </CardContent>
+            {coverSrc &&
             <div className={classes.imageWrapper}>
-                <Image src={"/test-book.jpeg"} sizes={"100%"} layout={"fill"} objectFit={"contain"}/>
+                <Image src={coverSrc} sizes={"100%"} layout={"fill"} objectFit={"contain"}/>
             </div>
+            }
             <CardContent>
                 {author}
             </CardContent>

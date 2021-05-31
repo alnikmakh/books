@@ -65,7 +65,7 @@ export const DoubleSlider = ({percentage, titleFirst, titleSecond, max, min}: Do
             </Typography>
             <Slider value={value - (calculateValue(value) - value)} onChange={handleChangeSecond}
                     valueLabelDisplay={"on"} step={1}
-                    max={max}/>
+                    max={value <= calculateValue(max) ? max : value - (calculateValue(value) - value)}/>
             <TextField label={"You pay"} defaultValue={value}
                        inputRef={inputEl} onBlur={handleBlurInput}
                        onChange={handleChangeInput}/>
