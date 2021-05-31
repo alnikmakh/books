@@ -4,6 +4,7 @@ import {BookPreview} from "../components/book-preview";
 import {Grid} from "@material-ui/core";
 import {makeStyles} from "@material-ui/styles";
 import fire from "../firebase-config";
+import {BookDTO} from "../types";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -11,7 +12,15 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Home({books}) {
+interface BookProp extends Omit<BookDTO, "description"> {
+    id: string;
+}
+
+interface HomeProps  {
+    books: BookProp[],
+}
+
+export default function Home({books}: HomeProps) {
     const classes = useStyles();
   return (
     <>

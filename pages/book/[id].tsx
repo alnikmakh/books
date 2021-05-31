@@ -4,6 +4,7 @@ import {makeStyles} from "@material-ui/styles";
 import {DoubleSlider} from "../../components/double-slider";
 import fire from "../../firebase-config";
 import clsx from "clsx";
+import {BookDTO} from "../../types";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,7 +22,11 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Book = ({book}) => {
+type BookProps = {
+    book: BookDTO,
+}
+
+const Book = ({book}: BookProps) => {
     const classes = useStyles();
 
     return (

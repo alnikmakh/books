@@ -3,6 +3,7 @@ import {ShoppingCartOutlined} from "@material-ui/icons";
 import Image from "next/image";
 import {makeStyles} from "@material-ui/styles";
 import Link from "next/link";
+import {BookDTO} from "../../types";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -17,7 +18,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const BookPreview = ({name, author, id, coverSrc}) => {
+interface BookPreviewProps extends Pick<BookDTO, "name" | "author"> {
+    id: string;
+    coverSrc: string;
+}
+
+
+export const BookPreview = ({name, author, id, coverSrc}: BookPreviewProps) => {
     const classes = useStyles();
     return (
         <Card>
