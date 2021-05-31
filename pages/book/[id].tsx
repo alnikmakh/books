@@ -3,6 +3,7 @@ import Image from 'next/image'
 import {makeStyles} from "@material-ui/styles";
 import {DoubleSlider} from "../../components/double-slider";
 import fire from "../../firebase-config";
+import clsx from "clsx";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -15,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: {
         paddingBottom: "1rem",
     },
+    paddingTop: {
+        paddingTop: "2rem",
+    }
 }));
 
 const Book = ({book}) => {
@@ -26,13 +30,15 @@ const Book = ({book}) => {
                 <Grid item xs={4} >
                     <Card>
                         <CardContent>
-                            {book.name}
+                            {book.name && book.name}
                         </CardContent>
+                        {book.cover &&
                         <div className={classes.imageWrapper}>
                             <Image src={book.cover} sizes={"100%"} layout={"fill"} objectFit={"contain"}/>
                         </div>
+                        }
                         <CardContent>
-                            {book.author}
+                            {book.author && book.author}
                         </CardContent>
                     </Card>
                 </Grid>
@@ -55,6 +61,12 @@ const Book = ({book}) => {
                             </Grid>
                         </Grid>
                     </form>
+                    <Typography variant={"h5"} className={clsx(classes.paddingBottom, classes.paddingTop)}>
+                        Description:
+                    </Typography>
+                    <Typography>
+                        {book.description && book.description}
+                    </Typography>
                 </Grid>
             </Grid>
         </>
